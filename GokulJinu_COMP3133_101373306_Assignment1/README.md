@@ -2,13 +2,14 @@ Employee Management System - GraphQL API
 
 Course: COMP 3133 - Full Stack Development II
 Assignment: 1 (12%)
-Student Name: Gokul Jinu (Basil)
-Student ID: Your Student ID Here
+Student Name: Gokul Jinu
+Student ID: 101373306
 Submission Date: February 16, 2025
 
 Project Overview
 
-This is a GraphQL-based Employee Management System built with Node.js, Express, MongoDB, and Apollo Server. The system allows user authentication and CRUD operations for employee records.
+This is a GraphQL-based Employee Management System built with Node.js, Express, MongoDB, and Apollo Server.
+ The system allows user authentication and CRUD operations for employee records.
 
 Features
 
