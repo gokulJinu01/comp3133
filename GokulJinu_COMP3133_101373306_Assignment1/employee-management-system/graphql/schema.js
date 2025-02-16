@@ -6,7 +6,7 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
-    password: String! # 🔥 Ensure this is included in the database but never exposed
+    password: String! #Ensure this is included in the database but never exposed
     created_at: String
     updated_at: String
   }
@@ -28,16 +28,16 @@ const typeDefs = gql`
 
   type Query {
     getAllEmployees: [Employee]
-    getAllUsers: [User]  # ✅ Fix: Ensured it is present
-    searchEmployeeById(eid: ID!): Employee  # ✅ Match resolver function name
+    getAllUsers: [User]  
+    searchEmployeeById(eid: ID!): Employee  
     searchEmployeeByDesignationOrDepartment(designation: String, department: String): [Employee]
-    login(username: String!, password: String!): String  # ✅ Moved inside Query
+    login(username: String!, password: String!): String  
   }
 
   type Mutation {
     signup(username: String!, email: String!, password: String!): User
     updateUser(username: String!, email: String!): User
-    deleteUser(username: String!): String  # ✅ Ensure it returns a string response
+    deleteUser(username: String!): String  
     addEmployee(
       first_name: String!,
       last_name: String!,

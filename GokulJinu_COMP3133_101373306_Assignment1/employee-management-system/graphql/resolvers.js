@@ -31,16 +31,16 @@ const resolvers = {
 
         searchEmployeeById: async (_, { eid }) => {
           try {
-              console.log(`🔍 Searching for Employee with ID: ${eid}`);
+              console.log(`Searching for Employee with ID: ${eid}`);
               const employee = await Employee.findById(eid);
               if (!employee) {
-                  console.log("❌ Employee not found");
+                  console.log("Employee not found");
                   throw new Error("Employee not found");
               }
-              console.log("✅ Employee found:", employee);
+              console.log("Employee found:", employee);
               return employee;
           } catch (error) {
-              console.error("❌ Error fetching employee:", error.message);
+              console.error("Error fetching employee:", error.message);
               throw new Error("Error fetching employee");
           }
       },
@@ -78,7 +78,7 @@ const resolvers = {
 
         updateUser: async (_, { username, email }) => {
           try {
-            console.log(`🔍 Checking for user: ${username}`);
+            console.log(`Checking for user: ${username}`);
             const user = await User.findOneAndUpdate(
               { username },
               { email, updated_at: new Date().toISOString() },
@@ -86,14 +86,14 @@ const resolvers = {
             );
         
             if (!user) {
-              console.log("❌ User not found for update");
+              console.log("User not found for update");
               throw new Error("User not found");
             }
         
-            console.log("✅ User updated:", user);
+            console.log("User updated:", user);
             return user;
           } catch (error) {
-            console.error("❌ Error updating user:", error.message);
+            console.error("Error updating user:", error.message);
             throw new Error("Error updating user");
           }
         },

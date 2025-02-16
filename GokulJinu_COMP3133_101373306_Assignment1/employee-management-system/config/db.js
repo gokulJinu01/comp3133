@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-console.log("🔍 DEBUG: MONGO_URI =", process.env.MONGO_URI); // Debugging line
+console.log(" DEBUG: MONGO_URI =", process.env.MONGO_URI); // Debugging line
 
 const connectDB = async () => {
     try {
@@ -13,9 +13,9 @@ const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        console.log('✅ MongoDB Connected...');
+        console.log('MongoDB Connected...');
     } catch (error) {
-        console.error('❌ MongoDB Connection Failed:', error);
+        console.error(' MongoDB Connection Failed:', error);
         process.exit(1);
     }
 };
