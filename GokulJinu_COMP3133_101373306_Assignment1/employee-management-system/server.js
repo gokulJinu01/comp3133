@@ -1,23 +1,41 @@
-require('dotenv').config();  // Must be the first line
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
+const User = require('./models/User'); // Import User model
 
 const app = express();
-
-// Connect to MongoDB
-connectDB();
-
 app.use(express.json());
 
-// Set up GraphQL server
-const server = new ApolloServer({ typeDefs, resolvers });
-server.start().then(() => {
-  server.applyMiddleware({ app });
+// MongoDB Connection
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('✅ MongoDB Connected...');
+    } catch (error) {
+        console.error('❌ MongoDB Connection Failed:', error);
+        process.exit(1);
+    }
+};
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+connectDB();
+
+// Apollo GraphQL Server
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: () => ({ User }) // Pass User model in context
+});
+
+server.start().then(() => {
+    server.applyMiddleware({ app });
+
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 });
